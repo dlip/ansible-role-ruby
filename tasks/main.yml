@@ -1,4 +1,22 @@
 ---
+
+- name: Install ruby dependencies
+  yum: name={{ item }} state=present
+  when: ansible_os_family == "RedHat"
+  with_items:
+    - tar
+    - readline
+    - readline-devel
+    - zlib
+    - zlib-devel
+    - libyaml-devel
+    - libffi-devel
+    - openssl-devel
+    - bzip2
+    - automake
+    - libtool
+    - bison
+
 - name: Download ruby.
   get_url: >
     url={{ ruby_download_url }}
@@ -18,7 +36,7 @@
   with_items:
     - ./configure
     - make
-    - sudo make install
+    - make install
 
 - name: Add ruby symlinks.
   file: >

@@ -4,7 +4,6 @@
   yum: name={{ item }} state=present
   when: ansible_os_family == "RedHat"
   with_items:
-    - tar
     - readline
     - readline-devel
     - zlib
